@@ -1,0 +1,24 @@
+class Solution {
+public:
+void solve(int idx,int k,int n,vector<int> &arr,vector<int> &temp,int sum,vector<vector<int>> &ans){
+if(temp.size()==k and sum==n){
+ans.push_back(temp);
+return;
+}
+if(idx==arr.size()) return ;
+sum+=arr[idx];
+temp.push_back(arr[idx]);
+solve(idx+1,k,n,arr,temp,sum,ans);
+sum-=arr[idx];
+temp.pop_back();
+solve(idx+1,k,n,arr,temp,sum,ans);
+}
+    vector<vector<int>> combinationSum3(int k, int n) {
+     vector<vector<int>> ans;
+vector<int> arr;
+for(int i=1;i<=9;i++) arr.push_back(i);
+vector<int> temp;
+solve(0,k,n,arr,temp,0,ans);
+return ans;   
+    }
+};
